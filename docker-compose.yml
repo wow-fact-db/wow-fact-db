@@ -5,6 +5,9 @@ services:
     image: mysql:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=test
+      - MYSQL_DATABASE=fact
+      - MYSQL_USER=fact
+      - MYSQL_PASSWORD=fact
     ports:
       - "3309:3306"
   nginx:
@@ -17,7 +20,7 @@ services:
     ports:
       - "8009:80"
   php:
-    image: php:7.0-fpm
+    build: ./docker/php/
     working_dir: /data
     volumes:
       - .:/data
