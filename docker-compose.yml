@@ -11,6 +11,7 @@ services:
     image: nginx:latest
     volumes:
       - .:/data
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     links:
       - php
     ports:
