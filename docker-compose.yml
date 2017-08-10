@@ -1,0 +1,24 @@
+# docker-compose.yml
+version: '2'
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=test
+    ports:
+      - "3309:3306"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - .:/data
+    links:
+      - php
+    ports:
+      - "8009:80"
+  php:
+    image: php:7.0-fpm
+    working_dir: /data
+    volumes:
+      - .:/data
+    links:
+      - mysql
